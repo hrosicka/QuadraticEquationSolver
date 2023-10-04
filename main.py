@@ -43,7 +43,6 @@ class MplCanvas(FigureCanvasQTAgg):
 
 class MainWindow(QMainWindow):
 
-   
     def __init__(self):
         super().__init__()
 
@@ -56,21 +55,32 @@ class MainWindow(QMainWindow):
         self.setMaximumWidth(800)
         self.setMaximumHeight(800)
 
+        buttonSolve = QPushButton('Solve')
+        buttonSolve.clicked.connect(lambda: self.solve())
+
         buttonClose = QPushButton('Close')
         buttonClose.clicked.connect(self.close)
 
         horizontalLayout = QHBoxLayout()
         horizontalLayout.addStretch(1)
+        horizontalLayout.addWidget(buttonSolve)
         horizontalLayout.addWidget(buttonClose)
 
         verticalLayout = QVBoxLayout()
         
         self.layoutCoef()
+        self.layoutEquation()
 
         groupBoxCoef = QGroupBox("Coefficients")
         groupBoxCoef.setLayout(self.layout_coef)
 
+
+        groupBoxEquation = QGroupBox("Quadratic equation")
+        groupBoxEquation.setLayout(self.layout_equation)
+
+
         verticalLayout.addWidget(groupBoxCoef)
+        verticalLayout.addWidget(groupBoxEquation)
         verticalLayout.addStretch(1)
         verticalLayout.addLayout(horizontalLayout)
 
@@ -95,7 +105,9 @@ class MainWindow(QMainWindow):
 
         self.edit_a = QLineEdit(self)
         self.edit_a.setAlignment(QtCore.Qt.AlignRight)
+        self.edit_a.setToolTip("Enter coefficent a ≠ 0")
         self.layout_coef.addWidget(self.edit_a,1,1)
+        
 
         self.label_b = QLabel("b:")
         self.label_b.setAlignment(QtCore.Qt.AlignLeft)
@@ -103,6 +115,7 @@ class MainWindow(QMainWindow):
 
         self.edit_b = QLineEdit(self)
         self.edit_b.setAlignment(QtCore.Qt.AlignRight)
+        self.edit_b.setToolTip("Enter coefficent b")
         self.layout_coef.addWidget(self.edit_b,1,3)
 
         self.label_c = QLabel("c:")
@@ -111,9 +124,42 @@ class MainWindow(QMainWindow):
 
         self.edit_c = QLineEdit(self)
         self.edit_c.setAlignment(QtCore.Qt.AlignRight)
+        self.edit_c.setToolTip("Enter coefficent c")
         self.layout_coef.addWidget(self.edit_c,1,5)
 
   
+    def layoutEquation(self):
+
+        self.layout_equation = QGridLayout()
+
+        self.label_equation = QLabel("")
+        self.label_equation.setAlignment(QtCore.Qt.AlignLeft)
+        self.layout_equation.addWidget(self.label_equation,0,0,1,6)
+
+        
+
+    def solve(self):
+        coeff_a = self.edit_a.text()
+        
+        coeff_b = int(self.edit_b.text())
+        if coeff_b > 0:
+            coeff_b = "+" + str(coeff_b)
+        elif coeff_b == 0:
+            coeff_b = ""
+        else:
+            coeff_b = str(coeff_b)
+
+        coeff_c = int(self.edit_c.text())
+        if coeff_c > 0:
+            coeff_c = "+" + str(coeff_c)
+        elif coeff_c == 0:
+            coeff_c = ""
+        else:
+            coeff_c = str(coeff_c)
+
+
+        self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_b + "x " + coeff_c + " = 0")
+   
 
     
    
