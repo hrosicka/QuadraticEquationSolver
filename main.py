@@ -18,7 +18,12 @@ from PyQt5.QtWidgets import (
     QAction,
 )
 
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import (
+    QDoubleValidator,
+    QFont,
+    QIntValidator,
+    QPixmap,
+)
 from PyQt5 import QtCore
 
 import matplotlib
@@ -92,6 +97,8 @@ class MainWindow(QMainWindow):
 
 
     def layoutCoef(self):
+        
+        validator = QIntValidator(-10000, 1000, self)
 
         self.layout_coef = QGridLayout()
 
@@ -106,6 +113,7 @@ class MainWindow(QMainWindow):
         self.edit_a = QLineEdit(self)
         self.edit_a.setAlignment(QtCore.Qt.AlignRight)
         self.edit_a.setToolTip("Enter coefficent a ≠ 0")
+        self.edit_a.setValidator(validator)
         self.layout_coef.addWidget(self.edit_a,1,1)
         
 
@@ -116,6 +124,7 @@ class MainWindow(QMainWindow):
         self.edit_b = QLineEdit(self)
         self.edit_b.setAlignment(QtCore.Qt.AlignRight)
         self.edit_b.setToolTip("Enter coefficent b")
+        self.edit_b.setValidator(validator)
         self.layout_coef.addWidget(self.edit_b,1,3)
 
         self.label_c = QLabel("c:")
@@ -125,6 +134,7 @@ class MainWindow(QMainWindow):
         self.edit_c = QLineEdit(self)
         self.edit_c.setAlignment(QtCore.Qt.AlignRight)
         self.edit_c.setToolTip("Enter coefficent c")
+        self.edit_c.setValidator(validator)
         self.layout_coef.addWidget(self.edit_c,1,5)
 
   
@@ -133,6 +143,7 @@ class MainWindow(QMainWindow):
         self.layout_equation = QGridLayout()
 
         self.label_equation = QLabel("")
+        self.label_equation.setFont(QFont('Sans Serif', 12))
         self.label_equation.setAlignment(QtCore.Qt.AlignLeft)
         self.layout_equation.addWidget(self.label_equation,0,0,1,6)
 
@@ -158,7 +169,29 @@ class MainWindow(QMainWindow):
             coeff_c = str(coeff_c)
 
 
-        self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_b + "x " + coeff_c + " = 0")
+        if coeff_b == "+1" and coeff_a not in ["-1", "1", "0"]:
+            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + "+x " + coeff_c + " = 0")
+        
+        elif coeff_b == "+1" and coeff_a == "1":
+            self.label_equation.setText("x<sup>2</sup> " + "+x " + coeff_c + " = 0")
+
+        elif coeff_b == "+1" and coeff_a == "-1":
+            self.label_equation.setText("-x<sup>2</sup> " + "+x " + coeff_c + " = 0")
+
+        elif coeff_b == "-1"and coeff_a not in ["-1", "+1", "0"]:
+            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + "-x " + coeff_c + " = 0")
+        
+        elif coeff_b == "-1"and coeff_a == "1":
+            self.label_equation.setText("x<sup>2</sup> " + "-x " + coeff_c + " = 0")
+
+        elif coeff_b == "-1"and coeff_a == "-1":
+            self.label_equation.setText("-x<sup>2</sup> " + "-x " + coeff_c + " = 0")
+        
+        elif coeff_b != "" and coeff_a not in ["-1", "+1", "0"]:
+            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_b + "x " + coeff_c + " = 0")
+
+        else:
+            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_c + " = 0")
    
 
     
