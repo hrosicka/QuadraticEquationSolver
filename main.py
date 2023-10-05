@@ -150,6 +150,13 @@ class MainWindow(QMainWindow):
         
 
     def solve(self):
+        self.display()
+
+
+
+
+    def display(self):
+
         coeff_a = self.edit_a.text()
         
         coeff_b = int(self.edit_b.text())
@@ -192,6 +199,7 @@ class MainWindow(QMainWindow):
 
         else:
             self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_c + " = 0")
+        
    
 
     
