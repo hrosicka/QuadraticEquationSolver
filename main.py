@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import (
     QLayout,
     QLineEdit,
     QMainWindow,
+    QMessageBox,
     QPushButton,
     QVBoxLayout,
     QHBoxLayout,
@@ -52,7 +53,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
 
-        self.setWindowTitle('PyQt Math App')
+        self.setWindowTitle('Quadratic Equation')
 
         self.setMinimumWidth(400)
         self.setMinimumHeight(400)
@@ -158,47 +159,85 @@ class MainWindow(QMainWindow):
     def display(self):
 
         coeff_a = self.edit_a.text()
+        coeff_b = self.edit_b.text()
+        coeff_c = self.edit_c.text()
+
+        try:
+            a = int(coeff_a)
+            b = int(coeff_b)
+            c = int(coeff_c)
+
+            self.edit_a.setStyleSheet("background-color : white; color : black")
+            self.edit_b.setStyleSheet("background-color : white; color : black")
+            self.edit_c.setStyleSheet("background-color : white; color : black")
+
+            try:
+                res = 1 / a
+
+                self.edit_a.setStyleSheet("background-color : white; color : black")
+                self.edit_b.setStyleSheet("background-color : white; color : black")
+                self.edit_c.setStyleSheet("background-color : white; color : black")
+
+            except Exception:
+                self.edit_a.setStyleSheet("background-color : pink; color : black")
+                QMessageBox.about(self, 'Error','Coefficient a cannot be zero')
+
+            else:
+                self.display_equation_format(a, b, c)
+
+        except Exception:
+            self.edit_a.setStyleSheet("background-color : pink; color : black")
+            self.edit_b.setStyleSheet("background-color : pink; color : black")
+            self.edit_c.setStyleSheet("background-color : pink; color : black")
+            QMessageBox.about(self, 'Error','Input can only be an integer')
+
         
-        coeff_b = int(self.edit_b.text())
-        if coeff_b > 0:
-            coeff_b = "+" + str(coeff_b)
-        elif coeff_b == 0:
-            coeff_b = ""
+
+
+
+
+    def display_equation_format(self, a, b, c):
+
+        a = str(a)
+
+        if b > 0:
+            b = "+" + str(b)
+        elif b == 0:
+            b = ""
         else:
-            coeff_b = str(coeff_b)
+            b = str(b)
 
-        coeff_c = int(self.edit_c.text())
-        if coeff_c > 0:
-            coeff_c = "+" + str(coeff_c)
-        elif coeff_c == 0:
-            coeff_c = ""
+        if c > 0:
+            c = "+" + str(c)
+        elif c == 0:
+            c = ""
         else:
-            coeff_c = str(coeff_c)
+            c = str(c)
 
-
-        if coeff_b == "+1" and coeff_a not in ["-1", "1", "0"]:
-            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + "+x " + coeff_c + " = 0")
+        if b == "+1" and a not in ["-1", "1", "0"]:
+            self.label_equation.setText(a + "x<sup>2</sup> " + "+x " + c + " = 0")
         
-        elif coeff_b == "+1" and coeff_a == "1":
-            self.label_equation.setText("x<sup>2</sup> " + "+x " + coeff_c + " = 0")
+        elif b == "+1" and a == "1":
+            self.label_equation.setText("x<sup>2</sup> " + "+x " + c + " = 0")
 
-        elif coeff_b == "+1" and coeff_a == "-1":
-            self.label_equation.setText("-x<sup>2</sup> " + "+x " + coeff_c + " = 0")
+        elif b == "+1" and a == "-1":
+            self.label_equation.setText("-x<sup>2</sup> " + "+x " + c + " = 0")
 
-        elif coeff_b == "-1"and coeff_a not in ["-1", "+1", "0"]:
-            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + "-x " + coeff_c + " = 0")
+        elif b == "-1"and a not in ["-1", "+1", "0"]:
+            self.label_equation.setText(a + "x<sup>2</sup> " + "-x " + c + " = 0")
         
-        elif coeff_b == "-1"and coeff_a == "1":
-            self.label_equation.setText("x<sup>2</sup> " + "-x " + coeff_c + " = 0")
+        elif b == "-1"and a == "1":
+            self.label_equation.setText("x<sup>2</sup> " + "-x " + c + " = 0")
 
-        elif coeff_b == "-1"and coeff_a == "-1":
-            self.label_equation.setText("-x<sup>2</sup> " + "-x " + coeff_c + " = 0")
+        elif b == "-1"and a == "-1":
+            self.label_equation.setText("-x<sup>2</sup> " + "-x " + c + " = 0")
         
-        elif coeff_b != "" and coeff_a not in ["-1", "+1", "0"]:
-            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_b + "x " + coeff_c + " = 0")
+        elif b != "" and a not in ["-1", "+1", "0"]:
+            self.label_equation.setText(a + "x<sup>2</sup> " + b + "x " + c + " = 0")
 
         else:
-            self.label_equation.setText(coeff_a + "x<sup>2</sup> " + coeff_c + " = 0")
+            self.label_equation.setText(a + "x<sup>2</sup> " + c + " = 0")    
+        
         
    
 
