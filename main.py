@@ -144,7 +144,7 @@ class MainWindow(QMainWindow):
         self.layout_equation = QGridLayout()
 
         self.label_equation = QLabel("")
-        self.label_equation.setFont(QFont('Sans Serif', 12))
+        self.label_equation.setFont(QFont('Sans Serif', 10))
         self.label_equation.setAlignment(QtCore.Qt.AlignLeft)
         self.layout_equation.addWidget(self.label_equation,0,0,1,6)
 
@@ -183,7 +183,7 @@ class MainWindow(QMainWindow):
                 QMessageBox.about(self, 'Error','Coefficient a cannot be zero')
 
             else:
-                self.display_equation_format(a, b, c)
+                self.label_equation.setText(self.display_equation_format(a, b, c))
 
         except Exception:
             self.edit_a.setStyleSheet("background-color : pink; color : black")
@@ -193,20 +193,69 @@ class MainWindow(QMainWindow):
 
         
 
-
-
-
     def display_equation_format(self, a, b, c):
+        """
+        Assembly quadratic equation
 
-        a = str(a)
+        a - coefficient a - int
 
-        if b > 0:
-            b = "+" + str(b)
+        b - coefficient b - int
+
+        c - coefficient c - int
+
+        return string (example 5x<sup>2</sup>+5x+5)
+        """
+        equation = self.first_term(a) + self.second_term(b) + self.third_term(c) + "=0"
+        return equation
+        
+
+    def first_term(self, a):
+        """
+        First quadratic term in quadratic equation
+
+        a - coefficient a - int
+
+        return string (example 5x<sup>2</sup> )
+        """
+        if a == 1:
+            a = "x<sup>2</sup>"
+        elif a == -1:
+            a = "-x<sup>2</sup>"
+        else:
+            a = str(a) + "x<sup>2</sup>"
+
+        return a
+
+
+    def second_term(self, b):
+        """
+        Second linear term in quadratic equation
+
+        b - coefficient b - int
+        
+        return string (example 5x )
+        """
+        if b == 1:
+            b = "+x"
+        elif b == -1:
+            b = "-x"
+        elif b > 0:
+            b = "+" + str(b) + "x"
         elif b == 0:
             b = ""
         else:
-            b = str(b)
+            b = str(b) + "x"
 
+        return b
+    
+    def third_term(self, c):
+        """
+        Third constant term in quadratic equation
+
+        c - coefficient c - int
+        
+        return string (example 5)
+        """
         if c > 0:
             c = "+" + str(c)
         elif c == 0:
@@ -214,34 +263,7 @@ class MainWindow(QMainWindow):
         else:
             c = str(c)
 
-        if b == "+1" and a not in ["-1", "1", "0"]:
-            self.label_equation.setText(a + "x<sup>2</sup> " + "+x " + c + " = 0")
-        
-        elif b == "+1" and a == "1":
-            self.label_equation.setText("x<sup>2</sup> " + "+x " + c + " = 0")
-
-        elif b == "+1" and a == "-1":
-            self.label_equation.setText("-x<sup>2</sup> " + "+x " + c + " = 0")
-
-        elif b == "-1"and a not in ["-1", "+1", "0"]:
-            self.label_equation.setText(a + "x<sup>2</sup> " + "-x " + c + " = 0")
-        
-        elif b == "-1"and a == "1":
-            self.label_equation.setText("x<sup>2</sup> " + "-x " + c + " = 0")
-
-        elif b == "-1"and a == "-1":
-            self.label_equation.setText("-x<sup>2</sup> " + "-x " + c + " = 0")
-        
-        elif b != "" and a not in ["-1", "+1", "0"]:
-            self.label_equation.setText(a + "x<sup>2</sup> " + b + "x " + c + " = 0")
-
-        else:
-            self.label_equation.setText(a + "x<sup>2</sup> " + c + " = 0")    
-        
-        
-   
-
-    
+        return c
    
 app = QApplication(sys.argv)
 w = MainWindow()
