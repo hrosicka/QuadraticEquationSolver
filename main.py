@@ -36,6 +36,8 @@ from matplotlib import pyplot as plt
 
 import numpy as np
 
+import quadratic_equation
+
 
 class MplCanvas(FigureCanvasQTAgg):
 
@@ -158,15 +160,28 @@ class MainWindow(QMainWindow):
 
         self.layout_solution = QGridLayout()
 
-        
+        self.label_three_type_solution = QLabel('Type of solution')
+        self.layout_solution.addWidget(self.label_three_type_solution,0,0,1,6)
+
+        self.label_discriminant = QLabel('Discriminant D:')
+        self.layout_solution.addWidget(self.label_discriminant,1,0)
+
+        self.label_discriminant_number = QLabel('')
+        self.layout_solution.addWidget(self.label_discriminant_number,1,1,1,5)
+
+
+   
 
     def solve(self):
+        
         self.display()
+        
 
 
 
 
     def display(self):
+
 
         coeff_a = self.edit_a.text()
         coeff_b = self.edit_b.text()
@@ -194,6 +209,11 @@ class MainWindow(QMainWindow):
 
             else:
                 self.label_equation.setText(self.display_equation_format(a, b, c))
+
+                qe = quadratic_equation.QuadraticEquation(a, b, c)
+                self.discriminant = qe.discriminant()
+                self.label_three_type_solution.setText(qe.equation_type(self.discriminant))
+                self.label_discriminant_number.setText(str(self.discriminant))
 
         except Exception:
             self.edit_a.setStyleSheet("background-color : pink; color : black")
