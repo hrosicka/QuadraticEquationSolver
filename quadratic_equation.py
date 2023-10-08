@@ -21,6 +21,8 @@ class QuadraticEquation:
         self.a = a
         self.b = b
         self.c = c
+        self.x1 = 0
+        self.x2 = 0
 
     def discriminant(self):
         """
@@ -74,18 +76,15 @@ class QuadraticEquation:
         D = self.discriminant()
 
         if D == 0:
-            x = -self.b / (2 * self.a)
-            textPopis = "Diskriminant je roven 0 a rovnice má jen jedno řešení: {}.".format(round(x,3))
-            return(textPopis)
-        
+            self.x1 = self.x2 = -self.b / (2 * self.a)
+            
         elif D > 0:
-            x1 = (-self.b + math.sqrt(D)) / (2 * self.a)
-            x2 = (-self.b - math.sqrt(D)) / (2 * self.a)
-            textPopis = "Diskriminant je větší než 0 a rovnice má 2 řešení: {}, {}.".format(round(x1,3), round(x2,3))
-            return(textPopis)
-        
-        else:
-            textPopis = "Diskriminant je menší než 0 a rovnice nemá řešení v oboru reálných čísel."
-            return(textPopis)
+            self.x1 = (-self.b + math.sqrt(D)) / (2 * self.a)
+            self.x2 = (-self.b - math.sqrt(D)) / (2 * self.a)
 
-        
+           
+        else:
+            self.x1 = (-self.b + cmath.sqrt(D))/ (2 * self.a)
+            self.x2 = (-self.b - cmath.sqrt(D))/ (2 * self.a)
+
+            

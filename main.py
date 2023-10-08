@@ -152,7 +152,7 @@ class MainWindow(QMainWindow):
 
         self.label_equation = QLabel("")
         self.label_equation.setFont(QFont('Sans Serif', 10))
-        self.label_equation.setAlignment(QtCore.Qt.AlignLeft)
+        self.label_equation.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_equation.addWidget(self.label_equation,0,0,1,6)
 
 
@@ -169,8 +169,20 @@ class MainWindow(QMainWindow):
         self.label_discriminant_number = QLabel('')
         self.layout_solution.addWidget(self.label_discriminant_number,1,1,1,5)
 
+        self.label_x1_root = QLabel('Root x1:')
+        self.layout_solution.addWidget(self.label_x1_root,2,0)
 
-   
+        self.label_x1_root_number = QLabel('')
+        self.label_x1_root_number.setFont(QFont('Sans Serif', 10))
+        self.layout_solution.addWidget(self.label_x1_root_number,2,1,1,5)
+
+        self.label_x2_root = QLabel('Root x2:')
+        self.layout_solution.addWidget(self.label_x2_root,3,0)
+
+        self.label_x2_root_number = QLabel('')
+        self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
+        self.layout_solution.addWidget(self.label_x2_root_number,3,1,1,5)
+
 
     def solve(self):
         
@@ -214,6 +226,11 @@ class MainWindow(QMainWindow):
                 self.discriminant = qe.discriminant()
                 self.label_three_type_solution.setText(qe.equation_type(self.discriminant))
                 self.label_discriminant_number.setText(str(self.discriminant))
+                qe.solve()
+                self.x1_root = qe.x1
+                self.x2_root = qe.x2
+                self.label_x1_root_number.setText(str(self.x1_root))
+                self.label_x2_root_number.setText(str(self.x2_root))
 
         except Exception:
             self.edit_a.setStyleSheet("background-color : pink; color : black")
