@@ -76,6 +76,7 @@ class MainWindow(QMainWindow):
         
         self.layoutCoef()
         self.layoutEquation()
+        self.layoutSolution()
 
         groupBoxCoef = QGroupBox("Coefficients")
         groupBoxCoef.setLayout(self.layout_coef)
@@ -84,9 +85,13 @@ class MainWindow(QMainWindow):
         groupBoxEquation = QGroupBox("Quadratic equation")
         groupBoxEquation.setLayout(self.layout_equation)
 
+        groupBoxSolution = QGroupBox("Solution")
+        groupBoxSolution.setLayout(self.layout_solution)
+
 
         verticalLayout.addWidget(groupBoxCoef)
         verticalLayout.addWidget(groupBoxEquation)
+        verticalLayout.addWidget(groupBoxSolution)
         verticalLayout.addStretch(1)
         verticalLayout.addLayout(horizontalLayout)
 
@@ -147,6 +152,11 @@ class MainWindow(QMainWindow):
         self.label_equation.setFont(QFont('Sans Serif', 10))
         self.label_equation.setAlignment(QtCore.Qt.AlignLeft)
         self.layout_equation.addWidget(self.label_equation,0,0,1,6)
+
+
+    def layoutSolution(self):
+
+        self.layout_solution = QGridLayout()
 
         
 
