@@ -241,6 +241,12 @@ class MainWindow(QMainWindow):
                 self.label_x1_root_number.setText(str(self.x1_root))
                 self.label_x2_root_number.setText(str(self.x2_root))
 
+                self.sc.axes.cla()
+                x = np.linspace(-10, 10, 1000)
+                y = a * x ** 2 + b * x + c
+                self.sc.axes.plot(x, y)
+                self.sc.draw()
+
         except Exception:
             self.edit_a.setStyleSheet("background-color : pink; color : black")
             self.edit_b.setStyleSheet("background-color : pink; color : black")
