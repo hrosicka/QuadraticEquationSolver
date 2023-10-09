@@ -54,14 +54,15 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        self.sc = MplCanvas(self, width=6, height=6, dpi=100)
 
         self.setWindowTitle('Quadratic Equation')
 
-        self.setMinimumWidth(400)
-        self.setMinimumHeight(400)
+        self.setMinimumWidth(600)
+        self.setMinimumHeight(300)
 
-        self.setMaximumWidth(800)
-        self.setMaximumHeight(800)
+        self.setMaximumWidth(1200)
+        self.setMaximumHeight(600)
 
         buttonSolve = QPushButton('Solve')
         buttonSolve.clicked.connect(lambda: self.solve())
@@ -94,13 +95,21 @@ class MainWindow(QMainWindow):
         verticalLayout.addWidget(groupBoxCoef)
         verticalLayout.addWidget(groupBoxEquation)
         verticalLayout.addWidget(groupBoxSolution)
-        verticalLayout.addStretch(1)
-        verticalLayout.addLayout(horizontalLayout)
-
-
+ 
         
+
+        mainHorizontalLayout = QHBoxLayout()
+        mainHorizontalLayout.addLayout(verticalLayout)
+        mainHorizontalLayout.addWidget(self.sc)
+
+        outerVerticalLayout = QVBoxLayout()
+        outerVerticalLayout.addLayout(mainHorizontalLayout)
+        outerVerticalLayout.addStretch(1)
+        outerVerticalLayout.addLayout(horizontalLayout)
+        
+
         w = QWidget()
-        w.setLayout(verticalLayout)
+        w.setLayout(outerVerticalLayout)
         self.setCentralWidget(w)
 
 
