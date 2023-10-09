@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
 
         verticalLayout.addWidget(groupBoxCoef)
         verticalLayout.addWidget(groupBoxEquation)
-        verticalLayout.addWidget(groupBoxSolution)
+        verticalLayout.addWidget(groupBoxSolution, 1)
  
         
 
