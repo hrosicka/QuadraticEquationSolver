@@ -3,20 +3,20 @@ import cmath
 
 class QuadraticEquation:
     """ 
-    Třída pro výpočet kvadratické rovnice v oboru reálných čísel
+    Calculation of quadratic equation including complex roots
     """
     
     def __init__(self, a, b, c):
         """
-        Konstruktor kvadratické rovnice
+        Constructor
 
-        a, b, c jsou reálná čísla
+        a, b, c - coefficients - integers
 
-        ax^2 - kvadratický člen
+        ax^2 - quadratic term
 
-        bx - lineární člen
+        bx - linear term
 
-        c - absolutní člen
+        c - constant term
         """
         self.a = a
         self.b = b
@@ -26,17 +26,15 @@ class QuadraticEquation:
 
     def discriminant(self):
         """
-        Výpočet diskriminantu
-
         D = b^2 - 4*a*c
 
-        Mohou nastat 3 situace:
+        3 possibilities:
 
-        D < 0 - rovnice nemá v oboru reálných čísel řešení
+        D < 0 - 2 complex roots
 
-        D = 0 - rovnice má jeden dvojnásobný kořen
+        D = 0 
 
-        D > 0 - rovnice má dva různé reálné kořeny
+        D > 0 - 2 roots
         """
         D = pow(self.b,2) - 4*self.a*self.c
         return D
