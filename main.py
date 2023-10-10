@@ -30,23 +30,14 @@ from PyQt5 import QtCore
 import matplotlib
 matplotlib.use('Qt5Agg')
 
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
+
 from matplotlib import pyplot as plt
 
 import numpy as np
 
 import quadratic_equation
 
-
-class MplCanvas(FigureCanvasQTAgg):
-
-    def __init__(self, parent=None, width=5, height=5, dpi=100):
-        fig = Figure(figsize=(width, height), dpi=dpi)
-        self.axes = fig.add_subplot(111)
-        super(MplCanvas, self).__init__(fig)
-
-
+import canvas
 
 
 class MainWindow(QMainWindow):
@@ -54,7 +45,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.sc = MplCanvas(self, width=6, height=6, dpi=100)
+        self.sc = canvas.MplCanvas(self, width=6, height=6, dpi=100)
 
         self.setWindowTitle('Quadratic Equation')
 
@@ -192,6 +183,13 @@ class MainWindow(QMainWindow):
         self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_x2_root_number,3,1,1,5)
 
+        self.label_vertex = QLabel('Vertex:')
+        self.layout_solution.addWidget(self.label_vertex,4,0)
+
+        self.label_vertex_number = QLabel('')
+        self.label_vertex_number.setFont(QFont('Sans Serif', 10))
+        self.layout_solution.addWidget(self.label_vertex_number,4,1,1,5)
+
 
     def solve(self):
         
@@ -240,11 +238,15 @@ class MainWindow(QMainWindow):
                 self.x2_root = qe.x2
                 self.label_x1_root_number.setText(str(self.x1_root))
                 self.label_x2_root_number.setText(str(self.x2_root))
+                self.vertex_x = qe.vertex_x
+                self.vertex_y = qe.vertex_y
+                self.label_vertex_number.setText('('+str(self.vertex_x)+', '+str(self.vertex_y)+')')
 
                 self.sc.axes.cla()
-                x = np.linspace(-10, 10, 1000)
+                x = np.linspace(self.vertex_x-10, self.vertex_x+10, 1000)
                 y = a * x ** 2 + b * x + c
                 self.sc.axes.plot(x, y)
+                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=5, markeredgecolor="blue", markerfacecolor="blue")
                 self.sc.draw()
 
         except Exception:

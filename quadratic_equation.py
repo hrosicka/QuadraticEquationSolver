@@ -23,6 +23,8 @@ class QuadraticEquation:
         self.c = c
         self.x1 = 0
         self.x2 = 0
+        self.vertex_x = 0
+        self.vertex_y = 0
 
     def discriminant(self):
         """
@@ -84,5 +86,9 @@ class QuadraticEquation:
         else:
             self.x1 = (-self.b + cmath.sqrt(D))/ (2 * self.a)
             self.x2 = (-self.b - cmath.sqrt(D))/ (2 * self.a)
+
+
+        self.vertex_x = -self.b / (2 * self.a)
+        self.vertex_y = self.a*self.vertex_x*self.vertex_x + self.b*self.vertex_x + self.c
 
             
