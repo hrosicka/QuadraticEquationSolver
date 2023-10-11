@@ -247,6 +247,12 @@ class MainWindow(QMainWindow):
                 y = a * x ** 2 + b * x + c
                 self.sc.axes.plot(x, y)
                 self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=5, markeredgecolor="blue", markerfacecolor="blue")
+                self.sc.axes.set_xlabel('x-axis', fontsize=12)
+                self.sc.axes.set_ylabel('y-axis', fontsize=12)
+                self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
+                self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
+                                      xytext =(3, 1.8), arrowprops = dict(facecolor ='green',
+                                                                          shrink = 0.05)) 
                 self.sc.draw()
 
         except Exception:
