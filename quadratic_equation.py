@@ -76,16 +76,18 @@ class QuadraticEquation:
         D = self.discriminant()
 
         if D == 0:
-            self.x1 = self.x2 = -self.b / (2 * self.a)
+            self.x1 = self.x2 = round(-self.b / (2 * self.a),3)
             
         elif D > 0:
-            self.x1 = (-self.b + math.sqrt(D)) / (2 * self.a)
-            self.x2 = (-self.b - math.sqrt(D)) / (2 * self.a)
+            self.x1 = round((-self.b + math.sqrt(D)) / (2 * self.a),3)
+            self.x2 = round((-self.b - math.sqrt(D)) / (2 * self.a),3)
 
            
         else:
             self.x1 = (-self.b + cmath.sqrt(D))/ (2 * self.a)
             self.x2 = (-self.b - cmath.sqrt(D))/ (2 * self.a)
+            self.x1 = complex(round(self.x1.real,3),round(self.x1.imag,3))
+            self.x2 = complex(round(self.x2.real,3),round(self.x2.imag,3))
 
 
         self.vertex_x = -self.b / (2 * self.a)
