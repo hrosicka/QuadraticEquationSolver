@@ -250,8 +250,8 @@ class MainWindow(QMainWindow):
 
                 self.label_x1_root_number.setText(str(self.x1_root))
                 self.label_x2_root_number.setText(str(self.x2_root))
-                self.vertex_x = qe.vertex_x
-                self.vertex_y = qe.vertex_y
+                self.vertex_x = round(qe.vertex_x,3)
+                self.vertex_y = round(qe.vertex_y,3)
                 self.label_vertex_number.setText('('+str(self.vertex_x)+', '+str(self.vertex_y)+')')
 
                 self.sc.axes.cla()
@@ -263,7 +263,7 @@ class MainWindow(QMainWindow):
                 self.sc.axes.set_ylabel('y-axis', fontsize=12)
                 self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
                 self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
-                                      xytext =(3, 1.8), arrowprops = dict(facecolor ='green',
+                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='green',
                                                                           shrink = 0.05)) 
                 self.sc.draw()
 
