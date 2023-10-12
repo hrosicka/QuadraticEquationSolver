@@ -1,2 +1,5 @@
 # PyQtQuadraticEquationSolvePlot
-App for solve and plot Quadratic Equations including complex roots
+App for solving and plotting Quadratic Equations including complex roots
+
+![](https://github.com/hrosicka/PyQtQuadraticEquationSolvePlot/blob/master/doc/MainWindow.PNG)
+
