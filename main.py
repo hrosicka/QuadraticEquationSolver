@@ -236,6 +236,18 @@ class MainWindow(QMainWindow):
                 qe.solve()
                 self.x1_root = qe.x1
                 self.x2_root = qe.x2
+                
+                if (qe.x1 == qe.x2):
+                    self.label_x1_root.setText("Root x1 = Root x2:")
+                    self.label_x2_root.setVisible(False)
+                    self.label_x2_root_number.setVisible(False)
+
+                else:
+                    self.label_x1_root.setText("Root x1:")
+                    self.label_x2_root.setVisible(True)
+                    self.label_x2_root_number.setVisible(True)
+                
+
                 self.label_x1_root_number.setText(str(self.x1_root))
                 self.label_x2_root_number.setText(str(self.x2_root))
                 self.vertex_x = qe.vertex_x
