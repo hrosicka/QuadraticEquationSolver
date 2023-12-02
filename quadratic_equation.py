@@ -49,7 +49,7 @@ class QuadraticEquation:
             return "Equation has 1 root - the two roots are real and equal to each other."
 
         else:
-            return "Equation has 2 roors - real and unequal."
+            return "Equation has 2 roots - real and unequal."
 
 
 
