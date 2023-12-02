@@ -24,6 +24,7 @@ from PyQt5.QtGui import (
     QFont,
     QIntValidator,
     QPixmap,
+    QIcon,
 )
 from PyQt5 import QtCore
 
@@ -48,6 +49,7 @@ class MainWindow(QMainWindow):
         self.sc = canvas.MplCanvas(self, width=6, height=6, dpi=100)
 
         self.setWindowTitle('Quadratic Equation')
+        self.setWindowIcon(QIcon('D:\\Programovani\\Python\\naucse\\PyQtQuadraticEquationSolvePlot\\graph_ico.png'))
 
         self.setMinimumWidth(600)
         self.setMinimumHeight(300)
