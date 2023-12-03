@@ -13,3 +13,7 @@ App for solving and plotting Quadratic Equations
 #### Equation with 1 real root
 ![](https://github.com/hrosicka/PyQtQuadraticEquationSolvePlot/blob/master/doc/OneRoot.PNG)
 
+#### Equation with 2 complex roots
+![](https://github.com/hrosicka/PyQtQuadraticEquationSolvePlot/blob/master/doc/ComplexRoots.PNG)
+
+
