@@ -6,6 +6,7 @@ class QuadraticEquation:
     Calculation of quadratic equation including complex roots
     """
     
+
     def __init__(self, a, b, c):
         """
         Constructor
@@ -26,6 +27,7 @@ class QuadraticEquation:
         self.vertex_x = 0
         self.vertex_y = 0
 
+
     def discriminant(self):
         """
         D = b^2 - 4*a*c
@@ -41,7 +43,14 @@ class QuadraticEquation:
         D = pow(self.b,2) - 4*self.a*self.c
         return D
 
+
     def equation_type(self, D):
+        """
+        D - discriminant
+
+        return equation typy as a string
+        """
+
         if D < 0:
             return "The roots are complex."
 
@@ -55,23 +64,23 @@ class QuadraticEquation:
 
     def solve(self):
         """
-        Výpočet kvadratické rovnice
+        Solution of qaudratic equation
 
-        Mohou nastat 3 situace:
+        It can be 3 types of solution:
 
-        D < 0 - rovnice nemá v oboru reálných čísel řešení
+        D < 0 - when dicriminant is negative, equation has two complex solutions
 
-        D = 0 - rovnice má jeden dvojnásobný kořen
+        D = 0 - when dicriminant is zero, equation has just one solution
         
-        D > 0 - rovnice má dva různé reálné kořeny
+        D > 0 - when dicriminant is positive, equation has two real solutions
 
-        Pro kořeny platí:
+        Roots:
 
         x1 = (-b+sqrt(D))/(2*a)
 
         x2 = (-b-sqrt(D))/(2*a)
 
-        Funkce vrací řetězec s popsaným výsledkem.
+        Vertex calculation
         """
         D = self.discriminant()
 
