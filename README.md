@@ -30,7 +30,7 @@ D < 0    ->     2 complex roots
 ### Coefficient a must be non zero
 ![](https://github.com/hrosicka/PyQtQuadraticEquationSolvePlot/blob/master/doc/ANotZero.PNG)
 
-### Unit tests
+## Unit tests
 Unit tests can be run using command
 python -m unittest
 
