@@ -39,59 +39,72 @@ class MainWindow(QMainWindow):
 
         self.sc = canvas.MplCanvas(self, width=6, height=6, dpi=100)
 
+        # window name and icon
         self.setWindowTitle('Quadratic Equation')
         self.setWindowIcon(QIcon('D:\\Programovani\\Python\\naucse\\PyQtQuadraticEquationSolvePlot\\graph_ico.png'))
 
-        self.setMinimumWidth(600)
-        self.setMinimumHeight(300)
+        # minimum size of main window
+        self.setMinimumWidth(1200)
+        self.setMinimumHeight(600)
 
+        # maximum size of main window
         self.setMaximumWidth(1200)
         self.setMaximumHeight(600)
 
+        # button for solving quation
         buttonSolve = QPushButton('Solve')
         buttonSolve.clicked.connect(lambda: self.solve())
 
+        # button for closing window
         buttonClose = QPushButton('Close')
         buttonClose.clicked.connect(self.close)
 
-        horizontalLayout = QHBoxLayout()
-        horizontalLayout.addStretch(1)
-        horizontalLayout.addWidget(buttonSolve)
-        horizontalLayout.addWidget(buttonClose)
+        # horizontal layout for buttons - stretch method added
+        horizontalLayoutButtons = QHBoxLayout()
+        horizontalLayoutButtons.addStretch(1)
+        horizontalLayoutButtons.addWidget(buttonSolve)
+        horizontalLayoutButtons.addWidget(buttonClose)
 
-        verticalLayout = QVBoxLayout()
+        # vertical layout for numerical solution - input and results
+        verticalLayoutNumerical = QVBoxLayout()
         
+        # calling method for creating layout for input coefficients
         self.layoutCoef()
+
+        # calling method for creating layout for assembled equation
         self.layoutEquation()
+
+        # calling methon for creating layout for solution - discriminant and roots
         self.layoutSolution()
 
+        # group box for coefficients
         groupBoxCoef = QGroupBox("Coefficients")
         groupBoxCoef.setLayout(self.layout_coef)
 
-
+        # group box for equation
         groupBoxEquation = QGroupBox("Quadratic equation")
         groupBoxEquation.setLayout(self.layout_equation)
 
+        # group box for solution
         groupBoxSolution = QGroupBox("Solution")
         groupBoxSolution.setLayout(self.layout_solution)
 
-
-        verticalLayout.addWidget(groupBoxCoef)
-        verticalLayout.addWidget(groupBoxEquation)
-        verticalLayout.addWidget(groupBoxSolution, 1)
+        # vertical layout for numerical solution - input and results
+        verticalLayoutNumerical.addWidget(groupBoxCoef)
+        verticalLayoutNumerical.addWidget(groupBoxEquation)
+        verticalLayoutNumerical.addWidget(groupBoxSolution, 1)
  
-        
-
+        # horizontal layout for numetical values on the left side and graph on the right side
         mainHorizontalLayout = QHBoxLayout()
-        mainHorizontalLayout.addLayout(verticalLayout)
+        mainHorizontalLayout.addLayout(verticalLayoutNumerical)
         mainHorizontalLayout.addWidget(self.sc)
 
+        # vertical layout for final app solution - buttons on the bottom part of app
         outerVerticalLayout = QVBoxLayout()
         outerVerticalLayout.addLayout(mainHorizontalLayout)
         outerVerticalLayout.addStretch(1)
-        outerVerticalLayout.addLayout(horizontalLayout)
+        outerVerticalLayout.addLayout(horizontalLayoutButtons)
         
-
         w = QWidget()
         w.setLayout(outerVerticalLayout)
         self.setCentralWidget(w)
