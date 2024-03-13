@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
 
         # window name and icon
         self.setWindowTitle('Quadratic Equation')
-        self.setWindowIcon(QIcon('D:\\Programovani\\Python\\naucse\\PyQtQuadraticEquationSolvePlot\\graph_ico.png'))
+        self.setWindowIcon(QIcon('PyQtQuadraticEquationSolvePlot\\icons\\graph_ico.png'))
 
         # minimum size of main window
         self.setMinimumWidth(1200)
