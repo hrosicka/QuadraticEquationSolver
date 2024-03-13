@@ -1,11 +1,9 @@
 import sys
-from random import randint
 
 from PyQt5.QtWidgets import (
     QApplication,
     QGroupBox,
     QLabel,
-    QLayout,
     QLineEdit,
     QMainWindow,
     QMessageBox,
@@ -14,16 +12,11 @@ from PyQt5.QtWidgets import (
     QHBoxLayout,
     QWidget,
     QGridLayout,
-    QMenuBar,
-    QMenu,
-    QAction,
 )
 
 from PyQt5.QtGui import (
-    QDoubleValidator,
     QFont,
     QIntValidator,
-    QPixmap,
     QIcon,
 )
 from PyQt5 import QtCore
@@ -31,8 +24,6 @@ from PyQt5 import QtCore
 import matplotlib
 matplotlib.use('Qt5Agg')
 
-
-from matplotlib import pyplot as plt
 
 import numpy as np
 
