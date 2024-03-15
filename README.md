@@ -1,5 +1,5 @@
 # PyQtQuadraticEquationSolvePlot
-App for solving and plotting Quadratic Equations
+Simple application for solving and plotting Quadratic Equations
 
 ## Discriminant - 3 solution are possible
 Distriminant: D = b^2 - 4ac
@@ -25,6 +25,7 @@ D < 0    ->     2 complex roots
 
 ## Input validation
 ### Only integers
+It is possible insert only integers.
 ![](https://github.com/hrosicka/PyQtQuadraticEquationSolvePlot/blob/master/doc/InputValidationInteger.PNG)
 
 ### Coefficient a must be non zero
