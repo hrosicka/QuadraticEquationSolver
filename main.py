@@ -1,4 +1,5 @@
 import sys
+import os
 
 from PyQt5.QtWidgets import (
     QApplication,
@@ -39,9 +40,13 @@ class MainWindow(QMainWindow):
 
         self.sc = canvas.MplCanvas(self, width=6, height=6, dpi=100)
 
+        # relative path
+        dirname = os.path.dirname(__file__)
+        graph_ico = os.path.join(dirname, 'icons/graph_ico.png')
+
         # window name and icon
         self.setWindowTitle('Quadratic Equation')
-        self.setWindowIcon(QIcon('PyQtQuadraticEquationSolvePlot\\icons\\graph_ico.png'))
+        self.setWindowIcon(QIcon(graph_ico))
 
         # minimum size of main window
         self.setMinimumWidth(1200)
