@@ -1,5 +1,12 @@
 # PyQtQuadraticEquationSolvePlot
-Simple application for solving and plotting Quadratic Equations
+## Quadratic equations made easy!
+- Enter the coefficients and let us do the rest.
+- We'll show you the assembled equation.
+- Calculate the discriminant and roots.
+- Visualize the parabola with a graph.
+
+## Visualizes the Solution
+This program isn't just limited to solving quadratic equations; it can also visualize them!  The code utilizes the matplotlib library to generate a graph of the equation based on the user's input.  This graphical representation can be particularly helpful in understanding the relationship between the coefficients and the solution's behavior.
 
 ## Discriminant - 3 solution are possible
 Distriminant: D = b^2 - 4ac
