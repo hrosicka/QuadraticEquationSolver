@@ -42,4 +42,5 @@ It is possible insert only integers.
 Unit tests can be run using command
 python -m unittest
 
+[MIT LICENSE](https://github.com/hrosicka/QuadraticEquationSolver/blob/master/doc/LICENSE.txt)
 
