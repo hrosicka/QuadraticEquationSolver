@@ -1,4 +1,4 @@
-# PyQtQuadraticEquationSolvePlot
+# QuadraticEquationSolvePlot
 ## Quadratic equations made easy!
 - Enter the coefficients and let us do the rest.
 - We'll show you the assembled equation.
