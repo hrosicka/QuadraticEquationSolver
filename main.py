@@ -17,9 +17,9 @@ from PyQt5.QtWidgets import (
 )
 
 from PyQt5.QtGui import (
-    QFont,
     QIntValidator,
     QIcon,
+    QPixmap,
 )
 from PyQt5 import QtCore
 
@@ -42,12 +42,13 @@ class MainWindow(QMainWindow):
         self.sc = canvas.MplCanvas(self, width=6, height=6, dpi=100)
 
         # relative path
-        dirname = os.path.dirname(__file__)
-        graph_ico = os.path.join(dirname, 'icons/graph_ico.png')
+        self.dirname = os.path.dirname(__file__)
+        self.graph_ico = os.path.join(self.dirname, 'icons/graph_ico.png')
+        self.stop = os.path.join(self.dirname, 'icons/stop_writing.png')
 
         # window name and icon
         self.setWindowTitle('Quadratic Equation')
-        self.setWindowIcon(QIcon(graph_ico))
+        self.setWindowIcon(QIcon(self.graph_ico))
 
         # minimum size of main window
         self.setMinimumWidth(1200)
@@ -237,7 +238,9 @@ class MainWindow(QMainWindow):
 
             except Exception:
                 self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
-                QMessageBox.about(self, 'Error','Coefficient a cannot be zero')
+                messagebox = QMessageBox(QMessageBox.Information, "Error", "Coefficient 'a' cannot be zero!", buttons=QMessageBox.Ok, parent=self)
+                messagebox.setIconPixmap(QPixmap(self.stop))
+                messagebox.exec_()
 
             else:
                 self.label_equation.setText(self.display_equation_format(a, b, c))
@@ -285,7 +288,9 @@ class MainWindow(QMainWindow):
             self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
             self.edit_b.setStyleSheet("background-color : #FFA762; color : black")
             self.edit_c.setStyleSheet("background-color : #FFA762; color : black")
-            QMessageBox.about(self, 'Error','Input can only be an integer')
+            messagebox = QMessageBox(QMessageBox.Information, "Error", "Input can only be an integer!", buttons=QMessageBox.Ok, parent=self)
+            messagebox.setIconPixmap(QPixmap(self.stop))
+            messagebox.exec_()
 
         
 
