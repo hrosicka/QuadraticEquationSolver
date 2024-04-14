@@ -1,5 +1,6 @@
 import sys
 import os
+from pathlib import Path
 
 from PyQt5.QtWidgets import (
     QApplication,
@@ -16,9 +17,9 @@ from PyQt5.QtWidgets import (
 )
 
 from PyQt5.QtGui import (
-    QFont,
     QIntValidator,
     QIcon,
+    QPixmap,
 )
 from PyQt5 import QtCore
 
@@ -41,12 +42,13 @@ class MainWindow(QMainWindow):
         self.sc = canvas.MplCanvas(self, width=6, height=6, dpi=100)
 
         # relative path
-        dirname = os.path.dirname(__file__)
-        graph_ico = os.path.join(dirname, 'icons/graph_ico.png')
+        self.dirname = os.path.dirname(__file__)
+        self.graph_ico = os.path.join(self.dirname, 'icons/graph_ico.png')
+        self.stop = os.path.join(self.dirname, 'icons/stop_writing.png')
 
         # window name and icon
         self.setWindowTitle('Quadratic Equation')
-        self.setWindowIcon(QIcon(graph_ico))
+        self.setWindowIcon(QIcon(self.graph_ico))
 
         # minimum size of main window
         self.setMinimumWidth(1200)
@@ -162,7 +164,7 @@ class MainWindow(QMainWindow):
         self.layout_equation = QGridLayout()
 
         self.label_equation = QLabel("")
-        self.label_equation.setFont(QFont('Sans Serif', 10))
+        # self.label_equation.setFont(QFont('Sans Serif', 10))
         self.label_equation.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_equation.addWidget(self.label_equation,0,0,1,6)
 
@@ -172,33 +174,38 @@ class MainWindow(QMainWindow):
         self.layout_solution = QGridLayout()
 
         self.label_three_type_solution = QLabel('Type of solution')
+        self.label_three_type_solution.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_solution.addWidget(self.label_three_type_solution,0,0,1,6)
 
         self.label_discriminant = QLabel('Discriminant D:')
         self.layout_solution.addWidget(self.label_discriminant,1,0)
 
         self.label_discriminant_number = QLabel('')
+        self.label_discriminant_number.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_solution.addWidget(self.label_discriminant_number,1,1,1,5)
 
         self.label_x1_root = QLabel('Root x1:')
         self.layout_solution.addWidget(self.label_x1_root,2,0)
 
         self.label_x1_root_number = QLabel('')
-        self.label_x1_root_number.setFont(QFont('Sans Serif', 10))
+        self.label_x1_root_number.setAlignment(QtCore.Qt.AlignCenter)
+        # self.label_x1_root_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_x1_root_number,2,1,1,5)
 
         self.label_x2_root = QLabel('Root x2:')
         self.layout_solution.addWidget(self.label_x2_root,3,0)
 
         self.label_x2_root_number = QLabel('')
-        self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
+        self.label_x2_root_number.setAlignment(QtCore.Qt.AlignCenter)
+        # self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_x2_root_number,3,1,1,5)
 
         self.label_vertex = QLabel('Vertex:')
         self.layout_solution.addWidget(self.label_vertex,4,0)
 
         self.label_vertex_number = QLabel('')
-        self.label_vertex_number.setFont(QFont('Sans Serif', 10))
+        self.label_vertex_number.setAlignment(QtCore.Qt.AlignCenter)
+        #self.label_vertex_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_vertex_number,4,1,1,5)
 
 
@@ -206,10 +213,6 @@ class MainWindow(QMainWindow):
         
         self.display()
         
-
-
-
-
     def display(self):
 
 
@@ -222,20 +225,22 @@ class MainWindow(QMainWindow):
             b = int(coeff_b)
             c = int(coeff_c)
 
-            self.edit_a.setStyleSheet("background-color : white; color : black")
-            self.edit_b.setStyleSheet("background-color : white; color : black")
-            self.edit_c.setStyleSheet("background-color : white; color : black")
+            self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
+            self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
+            self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
 
             try:
                 res = 1 / a
 
-                self.edit_a.setStyleSheet("background-color : white; color : black")
-                self.edit_b.setStyleSheet("background-color : white; color : black")
-                self.edit_c.setStyleSheet("background-color : white; color : black")
+                self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
+                self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
+                self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
 
             except Exception:
-                self.edit_a.setStyleSheet("background-color : pink; color : black")
-                QMessageBox.about(self, 'Error','Coefficient a cannot be zero')
+                self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
+                messagebox = QMessageBox(QMessageBox.Information, "Error", "Coefficient 'a' cannot be zero!", buttons=QMessageBox.Ok, parent=self)
+                messagebox.setIconPixmap(QPixmap(self.stop))
+                messagebox.exec_()
 
             else:
                 self.label_equation.setText(self.display_equation_format(a, b, c))
@@ -268,21 +273,24 @@ class MainWindow(QMainWindow):
                 self.sc.axes.cla()
                 x = np.linspace(self.vertex_x-10, self.vertex_x+10, 1000)
                 y = a * x ** 2 + b * x + c
-                self.sc.axes.plot(x, y)
-                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=5, markeredgecolor="blue", markerfacecolor="blue")
+                self.sc.axes.plot(x, y, linewidth=3, color='#002535')
+                self.sc.axes.set_facecolor('#E4F7FF')
+                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=8, markeredgecolor="#002535", markerfacecolor="#EE6B05")
                 self.sc.axes.set_xlabel('x-axis', fontsize=12)
                 self.sc.axes.set_ylabel('y-axis', fontsize=12)
                 self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
                 self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
-                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='green',
+                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='#EE6B05',
                                                                           shrink = 0.05)) 
                 self.sc.draw()
 
         except Exception:
-            self.edit_a.setStyleSheet("background-color : pink; color : black")
-            self.edit_b.setStyleSheet("background-color : pink; color : black")
-            self.edit_c.setStyleSheet("background-color : pink; color : black")
-            QMessageBox.about(self, 'Error','Input can only be an integer')
+            self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
+            self.edit_b.setStyleSheet("background-color : #FFA762; color : black")
+            self.edit_c.setStyleSheet("background-color : #FFA762; color : black")
+            messagebox = QMessageBox(QMessageBox.Information, "Error", "Input can only be an integer!", buttons=QMessageBox.Ok, parent=self)
+            messagebox.setIconPixmap(QPixmap(self.stop))
+            messagebox.exec_()
 
         
 
@@ -361,4 +369,5 @@ class MainWindow(QMainWindow):
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
+app.setStyleSheet(Path('style.qss').read_text())
 app.exec()
