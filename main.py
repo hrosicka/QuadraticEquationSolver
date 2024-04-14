@@ -1,5 +1,6 @@
 import sys
 import os
+from pathlib import Path
 
 from PyQt5.QtWidgets import (
     QApplication,
@@ -55,29 +56,6 @@ class MainWindow(QMainWindow):
         # maximum size of main window
         self.setMaximumWidth(1200)
         self.setMaximumHeight(600)
-
-        self.setStyleSheet("""
-                            QToolTip { 
-                                border: 1px solid darkgrey;
-                                background-color: #0B132B;
-                                border-radius: 10px; 
-                                color: #E4F7FF; }
-                            QPushButton {background-color: #EE6B05; 
-                                color: white; 
-                                border-radius: 15px; 
-                                padding: 12px 12px; 
-                                margin-top: 5px; 
-                                outline: 0px;
-                                min-width: 100px;
-                                font-weight: bold}
-                                QPushButton:hover {background-color: #DD6405 }
-                            QLineEdit {border-radius: 5px;
-                                background-color: #E4F7FF;
-                                border: 1px solid #002535;
-                                min-height: 30px; }
-                            QLineEdit {
-                                min-height: 30px; }
-                           """) 
 
         # button for solving quation
         buttonSolve = QPushButton('Solve')
@@ -386,4 +364,5 @@ class MainWindow(QMainWindow):
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
+app.setStyleSheet(Path('style.qss').read_text())
 app.exec()
