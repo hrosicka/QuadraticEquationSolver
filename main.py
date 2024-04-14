@@ -56,6 +56,29 @@ class MainWindow(QMainWindow):
         self.setMaximumWidth(1200)
         self.setMaximumHeight(600)
 
+        self.setStyleSheet("""
+                            QToolTip { 
+                                border: 1px solid darkgrey;
+                                background-color: #0B132B;
+                                border-radius: 10px; 
+                                color: #E4F7FF; }
+                            QPushButton {background-color: #EE6B05; 
+                                color: white; 
+                                border-radius: 15px; 
+                                padding: 12px 12px; 
+                                margin-top: 5px; 
+                                outline: 0px;
+                                min-width: 100px;
+                                font-weight: bold}
+                                QPushButton:hover {background-color: #DD6405 }
+                            QLineEdit {border-radius: 5px;
+                                background-color: #E4F7FF;
+                                border: 1px solid #002535;
+                                min-height: 30px; }
+                            QLineEdit {
+                                min-height: 30px; }
+                           """) 
+
         # button for solving quation
         buttonSolve = QPushButton('Solve')
         buttonSolve.clicked.connect(lambda: self.solve())
@@ -162,7 +185,7 @@ class MainWindow(QMainWindow):
         self.layout_equation = QGridLayout()
 
         self.label_equation = QLabel("")
-        self.label_equation.setFont(QFont('Sans Serif', 10))
+        # self.label_equation.setFont(QFont('Sans Serif', 10))
         self.label_equation.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_equation.addWidget(self.label_equation,0,0,1,6)
 
@@ -172,33 +195,38 @@ class MainWindow(QMainWindow):
         self.layout_solution = QGridLayout()
 
         self.label_three_type_solution = QLabel('Type of solution')
+        self.label_three_type_solution.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_solution.addWidget(self.label_three_type_solution,0,0,1,6)
 
         self.label_discriminant = QLabel('Discriminant D:')
         self.layout_solution.addWidget(self.label_discriminant,1,0)
 
         self.label_discriminant_number = QLabel('')
+        self.label_discriminant_number.setAlignment(QtCore.Qt.AlignCenter)
         self.layout_solution.addWidget(self.label_discriminant_number,1,1,1,5)
 
         self.label_x1_root = QLabel('Root x1:')
         self.layout_solution.addWidget(self.label_x1_root,2,0)
 
         self.label_x1_root_number = QLabel('')
-        self.label_x1_root_number.setFont(QFont('Sans Serif', 10))
+        self.label_x1_root_number.setAlignment(QtCore.Qt.AlignCenter)
+        # self.label_x1_root_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_x1_root_number,2,1,1,5)
 
         self.label_x2_root = QLabel('Root x2:')
         self.layout_solution.addWidget(self.label_x2_root,3,0)
 
         self.label_x2_root_number = QLabel('')
-        self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
+        self.label_x2_root_number.setAlignment(QtCore.Qt.AlignCenter)
+        # self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_x2_root_number,3,1,1,5)
 
         self.label_vertex = QLabel('Vertex:')
         self.layout_solution.addWidget(self.label_vertex,4,0)
 
         self.label_vertex_number = QLabel('')
-        self.label_vertex_number.setFont(QFont('Sans Serif', 10))
+        self.label_vertex_number.setAlignment(QtCore.Qt.AlignCenter)
+        #self.label_vertex_number.setFont(QFont('Sans Serif', 10))
         self.layout_solution.addWidget(self.label_vertex_number,4,1,1,5)
 
 
@@ -206,10 +234,6 @@ class MainWindow(QMainWindow):
         
         self.display()
         
-
-
-
-
     def display(self):
 
 
@@ -222,19 +246,19 @@ class MainWindow(QMainWindow):
             b = int(coeff_b)
             c = int(coeff_c)
 
-            self.edit_a.setStyleSheet("background-color : white; color : black")
-            self.edit_b.setStyleSheet("background-color : white; color : black")
-            self.edit_c.setStyleSheet("background-color : white; color : black")
+            self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
+            self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
+            self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
 
             try:
                 res = 1 / a
 
-                self.edit_a.setStyleSheet("background-color : white; color : black")
-                self.edit_b.setStyleSheet("background-color : white; color : black")
-                self.edit_c.setStyleSheet("background-color : white; color : black")
+                self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
+                self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
+                self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
 
             except Exception:
-                self.edit_a.setStyleSheet("background-color : pink; color : black")
+                self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
                 QMessageBox.about(self, 'Error','Coefficient a cannot be zero')
 
             else:
@@ -268,20 +292,21 @@ class MainWindow(QMainWindow):
                 self.sc.axes.cla()
                 x = np.linspace(self.vertex_x-10, self.vertex_x+10, 1000)
                 y = a * x ** 2 + b * x + c
-                self.sc.axes.plot(x, y)
-                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=5, markeredgecolor="blue", markerfacecolor="blue")
+                self.sc.axes.plot(x, y, linewidth=3, color='#002535')
+                self.sc.axes.set_facecolor('#E4F7FF')
+                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=8, markeredgecolor="#002535", markerfacecolor="#EE6B05")
                 self.sc.axes.set_xlabel('x-axis', fontsize=12)
                 self.sc.axes.set_ylabel('y-axis', fontsize=12)
                 self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
                 self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
-                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='green',
+                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='#EE6B05',
                                                                           shrink = 0.05)) 
                 self.sc.draw()
 
         except Exception:
-            self.edit_a.setStyleSheet("background-color : pink; color : black")
-            self.edit_b.setStyleSheet("background-color : pink; color : black")
-            self.edit_c.setStyleSheet("background-color : pink; color : black")
+            self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
+            self.edit_b.setStyleSheet("background-color : #FFA762; color : black")
+            self.edit_c.setStyleSheet("background-color : #FFA762; color : black")
             QMessageBox.about(self, 'Error','Input can only be an integer')
 
         
