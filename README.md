@@ -1,4 +1,6 @@
 # QuadraticEquationSolvePlot
+**Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
+
 ## Quadratic equations made easy!
 - Enter the coefficients and let us do the rest.
 - We'll show you the assembled equation.
@@ -38,9 +40,16 @@ It is possible insert only integers.
 ### Coefficient a must be non zero
 ![](https://github.com/hrosicka/PyQtQuadraticEquationSolvePlot/blob/master/doc/ANotZero.PNG)
 
+## Tech Stack
+- **Language:** Python
+- **Libraries:**
+  - Matplotlib – for graphing the equation.
+  - NumPy – for precise mathematical calculations.
+
 ## Unit tests
 Unit tests can be run using command
 python -m unittest
 
-[MIT LICENSE](https://github.com/hrosicka/QuadraticEquationSolver?tab=MIT-1-ov-file#readme)
+## Licence
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/hrosicka/QuadraticEquationSolver/blob/master/LICENSE) file for more details.
 
