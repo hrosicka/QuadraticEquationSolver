@@ -1,4 +1,9 @@
 # QuadraticEquationSolvePlot
+
+![Python](https://img.shields.io/badge/language-python-blue.svg)
+![License](https://img.shields.io/github/license/hrosicka/QuadraticEquationSolver)
+![Last Commit](https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver)
+
 **Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
 
 ## Quadratic equations made easy!
