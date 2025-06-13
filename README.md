@@ -5,6 +5,22 @@
 ![Last Commit](https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver)
 ![GitHub stars](https://img.shields.io/github/stars/hrosicka/QuadraticEquationSolver?style=social)
 
+## ToC
+
+- [Quadratic equations made easy!](#quadratic-equations-made-easy)
+- [Visualizes the Solution](#visualizes-the-solution)
+- [Discriminant - 3 solution are possible](#discriminant---3-solution-are-possible)
+- [Solution](#solution)
+  - [Equation with 2 real roots](#equation-with-2-real-roots)
+  - [Equation with 1 real root](#equation-with-1-real-root)
+  - [Equation with 2 complex roots](#equation-with-2-complex-roots)
+- [Input validation](#input-validation)
+  - [Only integers](#only-integers)
+  - [Coefficient a must be non zero](#coefficient-a-must-be-non-zero)
+- [Tech Stack](#tech-stack)
+- [Unit tests](#unit-tests)
+- [Licence](#licence)
+
 **Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
 
 ## Quadratic equations made easy!
