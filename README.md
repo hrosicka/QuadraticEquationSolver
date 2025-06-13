@@ -5,6 +5,8 @@
 ![Last Commit](https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver)
 ![GitHub stars](https://img.shields.io/github/stars/hrosicka/QuadraticEquationSolver?style=social)
 
+**Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
+
 ## ToC
 
 - [Quadratic equations made easy!](#quadratic-equations-made-easy)
@@ -20,8 +22,6 @@
 - [Tech Stack](#tech-stack)
 - [Unit tests](#unit-tests)
 - [Licence](#licence)
-
-**Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
 
 ## Quadratic equations made easy!
 - Enter the coefficients and let us do the rest.
