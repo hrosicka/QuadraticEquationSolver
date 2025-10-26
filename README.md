@@ -72,6 +72,9 @@ It is possible insert only integers.
 Unit tests can be run using command
 python -m unittest
 
+## Author
+Lovingly crafted by [Hanka Robovska](https://github.com/hrosicka)
+
 ## Licence
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/hrosicka/QuadraticEquationSolver/blob/master/LICENSE) file for more details.
 
