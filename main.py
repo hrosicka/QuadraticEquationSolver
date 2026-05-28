@@ -212,10 +212,26 @@ class MainWindow(QMainWindow):
     def solve(self):
         
         self.display()
+
+    def mark_inputs_as_invalid(self):
+        """Mark all inputs as invalid (orange background)"""
+        self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
+        self.edit_b.setStyleSheet("background-color : #FFA762; color : black")
+        self.edit_c.setStyleSheet("background-color : #FFA762; color : black")
+
+    def mark_inputs_as_valid(self):
+        """Mark all inputs as valid (blue background)"""
+        self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
+        self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
+        self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
+
+    def show_error(self, title: str, message: str):
+        """Display an error dialog with the specified title and message"""
+        messagebox = QMessageBox(QMessageBox.Information, title, message, buttons=QMessageBox.Ok, parent=self)
+        messagebox.setIconPixmap(QPixmap(self.stop))
+        messagebox.exec_()
         
     def display(self):
-
-
         coeff_a = self.edit_a.text()
         coeff_b = self.edit_b.text()
         coeff_c = self.edit_c.text()
@@ -225,23 +241,15 @@ class MainWindow(QMainWindow):
             b = int(coeff_b)
             c = int(coeff_c)
 
-            self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
-            self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
-            self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
+            # Inputs are valid, mark them with the correct style
+            self.mark_inputs_as_valid()
 
             try:
                 res = 1 / a
-
-                self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
-                self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
-                self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
-
             except Exception:
-                self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
-                messagebox = QMessageBox(QMessageBox.Information, "Error", "Coefficient 'a' cannot be zero!", buttons=QMessageBox.Ok, parent=self)
-                messagebox.setIconPixmap(QPixmap(self.stop))
-                messagebox.exec_()
-
+                # Handle the specific case where coefficient 'a' is zero
+                self.edit_a.setStyleSheet("background-color : #FFA762; color : black") # Only 'a' is incorrect
+                self.show_error("Error", "Coefficient 'a' cannot be zero!")
             else:
                 self.label_equation.setText(self.display_equation_format(a, b, c))
 
@@ -257,12 +265,10 @@ class MainWindow(QMainWindow):
                     self.label_x1_root.setText("Root x1 = Root x2:")
                     self.label_x2_root.setVisible(False)
                     self.label_x2_root_number.setVisible(False)
-
                 else:
                     self.label_x1_root.setText("Root x1:")
                     self.label_x2_root.setVisible(True)
                     self.label_x2_root_number.setVisible(True)
-                
 
                 self.label_x1_root_number.setText(str(self.x1_root))
                 self.label_x2_root_number.setText(str(self.x2_root))
@@ -270,6 +276,7 @@ class MainWindow(QMainWindow):
                 self.vertex_y = round(qe.vertex_y,3)
                 self.label_vertex_number.setText('('+str(self.vertex_x)+', '+str(self.vertex_y)+')')
 
+                # Plotting the graph
                 self.sc.axes.cla()
                 x = np.linspace(self.vertex_x-10, self.vertex_x+10, 1000)
                 y = a * x ** 2 + b * x + c
@@ -281,16 +288,13 @@ class MainWindow(QMainWindow):
                 self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
                 self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
                                       xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='#EE6B05',
-                                                                          shrink = 0.05)) 
+                                                                                                    shrink = 0.05)) 
                 self.sc.draw()
 
         except Exception:
-            self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
-            self.edit_b.setStyleSheet("background-color : #FFA762; color : black")
-            self.edit_c.setStyleSheet("background-color : #FFA762; color : black")
-            messagebox = QMessageBox(QMessageBox.Information, "Error", "Input can only be an integer!", buttons=QMessageBox.Ok, parent=self)
-            messagebox.setIconPixmap(QPixmap(self.stop))
-            messagebox.exec_()
+            # Inputs are not integers -> mark all as invalid and show error
+            self.mark_inputs_as_invalid()
+            self.show_error("Error", "Input can only be an integer!")
 
         
 
@@ -369,5 +373,11 @@ class MainWindow(QMainWindow):
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
-app.setStyleSheet(Path('style.qss').read_text())
+
+
+script_dir = Path(__file__).resolve().parent
+qss_path = script_dir / 'style.qss'
+
+app.setStyleSheet(qss_path.read_text(encoding='utf-8'))
+
 app.exec()
