@@ -1,9 +1,31 @@
 # QuadraticEquationSolvePlot
 
-![Python](https://img.shields.io/badge/language-python-blue.svg)
-![License](https://img.shields.io/github/license/hrosicka/QuadraticEquationSolver)
-![Last Commit](https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver)
-![GitHub stars](https://img.shields.io/github/stars/hrosicka/QuadraticEquationSolver?style=social)
+<p align="center">
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/hrosicka/QuadraticEquationSolver" alt="License">
+  </a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/issues">
+    <img src="https://img.shields.io/github/issues/hrosicka/QuadraticEquationSolver?logo=github" alt="Open Issues">
+  </a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/pulls">
+    <img src="https://img.shields.io/github/issues-pr/hrosicka/QuadraticEquationSolver?logo=github" alt="Pull Requests">
+  </a>
+  <img src="https://img.shields.io/github/repo-size/hrosicka/QuadraticEquationSolver?color=blueviolet" alt="Repo Size">
+  <img src="https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver?logo=github" alt="Last Commit">
+  <img src="https://img.shields.io/github/languages/top/hrosicka/QuadraticEquationSolver?logo=code" alt="Top Language">
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/actions/workflows/tests.yml">
+    <img src="https://github.com/hrosicka/QuadraticEquationSolver/actions/workflows/tests.yml/badge.svg" alt="Tests">
+  </a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/stargazers">
+    <img src="https://img.shields.io/github/stars/hrosicka/QuadraticEquationSolver?style=social" alt="Stars">
+  </a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/network/members">
+    <img src="https://img.shields.io/github/forks/hrosicka/QuadraticEquationSolver?style=social" alt="Forks">
+  </a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/watchers">
+    <img src="https://img.shields.io/github/watchers/hrosicka/QuadraticEquationSolver?style=social" alt="Watchers">
+  </a>
+</p>
 
 **Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
 
