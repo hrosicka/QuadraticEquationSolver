@@ -1,6 +1,11 @@
-# spuštění testů - python -m unittest
+import os
+import sys
 # import testovacího modulu
 import unittest
+
+# Dynamically add the parent directory (CatGuru) to sys.path
+# This ensures api_client can be imported regardless of the working directory
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # import třídy QuadraticEquation ze souboru quadratic_equation.py
 from quadratic_equation import QuadraticEquation
@@ -39,3 +44,6 @@ class TestQuadraticEquation(unittest.TestCase):
         self.assertEqual(QuaEq3.discriminant(), 116)
         QuaEq4 = QuadraticEquation(-1,-14,20)
         self.assertEqual(QuaEq4.discriminant(), 276)
+
+if __name__ == "__main__":
+    unittest.main()
