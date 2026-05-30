@@ -1,0 +1,15 @@
+# config.py
+
+# Validation ranges
+VALIDATOR_MIN = -10000
+VALIDATOR_MAX = 10000
+
+# Hex colors for styles
+COLOR_VALID = "#E4F7FF"
+COLOR_INVALID = "#FFA762"
+COLOR_GRAPH_LINE = "#002535"
+COLOR_GRAPH_VERTEX = "#EE6B05"
+
+# Window dimensions
+WINDOW_WIDTH = 1200
+WINDOW_HEIGHT = 600

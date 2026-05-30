@@ -33,6 +33,8 @@ import quadratic_equation
 
 import canvas
 
+import config
+
 
 class MainWindow(QMainWindow):
 
@@ -54,9 +56,9 @@ class MainWindow(QMainWindow):
         self.setMinimumWidth(1200)
         self.setMinimumHeight(600)
 
-        # maximum size of main window
-        self.setMaximumWidth(1200)
-        self.setMaximumHeight(600)
+        # maximum size of main window - USING CONFIG
+        self.setMaximumWidth(config.WINDOW_WIDTH)
+        self.setMaximumHeight(config.WINDOW_HEIGHT)
 
         # button for solving quation
         buttonSolve = QPushButton('Solve')
@@ -119,7 +121,7 @@ class MainWindow(QMainWindow):
 
     def layoutCoef(self):
         
-        validator = QIntValidator(-10000, 1000, self)
+        validator = QIntValidator(config.VALIDATOR_MIN, config.VALIDATOR_MAX, self)
 
         self.layout_coef = QGridLayout()
 
@@ -214,16 +216,18 @@ class MainWindow(QMainWindow):
         self.display()
 
     def mark_inputs_as_invalid(self):
-        """Mark all inputs as invalid (orange background)"""
-        self.edit_a.setStyleSheet("background-color : #FFA762; color : black")
-        self.edit_b.setStyleSheet("background-color : #FFA762; color : black")
-        self.edit_c.setStyleSheet("background-color : #FFA762; color : black")
+        """Mark all inputs as invalid using config color"""
+        style = f"background-color : {config.COLOR_INVALID}; color : black"
+        self.edit_a.setStyleSheet(style)
+        self.edit_b.setStyleSheet(style)
+        self.edit_c.setStyleSheet(style)
 
     def mark_inputs_as_valid(self):
-        """Mark all inputs as valid (blue background)"""
-        self.edit_a.setStyleSheet("background-color : #E4F7FF; color : black")
-        self.edit_b.setStyleSheet("background-color : #E4F7FF; color : black")
-        self.edit_c.setStyleSheet("background-color : #E4F7FF; color : black")
+        """Mark all inputs as valid using config color"""
+        style = f"background-color : {config.COLOR_VALID}; color : black"
+        self.edit_a.setStyleSheet(style)
+        self.edit_b.setStyleSheet(style)
+        self.edit_c.setStyleSheet(style)
 
     def show_error(self, title: str, message: str):
         """Display an error dialog with the specified title and message"""
@@ -248,7 +252,7 @@ class MainWindow(QMainWindow):
                 res = 1 / a
             except Exception:
                 # Handle the specific case where coefficient 'a' is zero
-                self.edit_a.setStyleSheet("background-color : #FFA762; color : black") # Only 'a' is incorrect
+                self.edit_a.setStyleSheet(f"background-color : {config.COLOR_INVALID}; color : black") 
                 self.show_error("Error", "Coefficient 'a' cannot be zero!")
             else:
                 self.label_equation.setText(self.display_equation_format(a, b, c))
@@ -276,19 +280,19 @@ class MainWindow(QMainWindow):
                 self.vertex_y = round(qe.vertex_y,3)
                 self.label_vertex_number.setText('('+str(self.vertex_x)+', '+str(self.vertex_y)+')')
 
-                # Plotting the graph
+                # Plotting the graph using config colors
                 self.sc.axes.cla()
                 x = np.linspace(self.vertex_x-10, self.vertex_x+10, 1000)
                 y = a * x ** 2 + b * x + c
-                self.sc.axes.plot(x, y, linewidth=3, color='#002535')
-                self.sc.axes.set_facecolor('#E4F7FF')
-                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=8, markeredgecolor="#002535", markerfacecolor="#EE6B05")
+                self.sc.axes.plot(x, y, linewidth=3, color=config.COLOR_GRAPH_LINE)
+                self.sc.axes.set_facecolor(config.COLOR_VALID)
+                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=8, markeredgecolor=config.COLOR_GRAPH_LINE, markerfacecolor=config.COLOR_GRAPH_VERTEX)
                 self.sc.axes.set_xlabel('x-axis', fontsize=12)
                 self.sc.axes.set_ylabel('y-axis', fontsize=12)
                 self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
                 self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
-                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor ='#EE6B05',
-                                                                                                    shrink = 0.05)) 
+                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor =config.COLOR_GRAPH_VERTEX,
+                                                                                                       shrink = 0.05)) 
                 self.sc.draw()
 
         except Exception:
