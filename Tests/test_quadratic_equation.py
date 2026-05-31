@@ -43,5 +43,27 @@ class TestQuadraticEquation(unittest.TestCase):
         qua_eq4 = QuadraticEquation(-1, -14, 20)
         self.assertEqual(qua_eq4.discriminant(), 276)
 
+    def test_one_real_root(self):
+        qe = QuadraticEquation(1, 2, 1)
+        qe.solve()
+        self.assertEqual(qe.x1, qe.x2)  # Oba kořeny jsou stejné
+        
+    def test_two_real_roots(self):
+        qe = QuadraticEquation(1, -5, 6)
+        qe.solve()
+        self.assertAlmostEqual(qe.x1, 3.0, places=3)
+        self.assertAlmostEqual(qe.x2, 2.0, places=3)
+
+    def test_complex_roots(self):
+        qe = QuadraticEquation(1, 2, 5)
+        qe.solve()
+        self.assertEqual(qe.x1.imag > 0, True)  # Má imaginární část
+        
+    def test_vertex_calculation(self):
+        qe = QuadraticEquation(1, -4, 4)
+        qe.solve()
+        self.assertAlmostEqual(qe.vertex_x, 2.0, places=3)
+        self.assertAlmostEqual(qe.vertex_y, 0.0, places=3)
+
 if __name__ == "__main__":
     unittest.main()
