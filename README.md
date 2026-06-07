@@ -1,17 +1,17 @@
 # Quadratic Equation Solver
 
 <p align="center">
-  [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
-  [![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org)
-  [![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge)](https://matplotlib.org)
-  [![Tests Status](https://img.shields.io/github/actions/workflow/status/hrosicka/QuadraticEquationSolver/tests.yml?branch=master&style=for-the-badge&logo=github&label=Tests)](https://github.com/hrosicka/QuadraticEquationSolver/actions/workflows/tests.yml)
+  <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></a>
+  <a href="https://numpy.org"><img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy"/></a>
+  <a href="https://matplotlib.org"><img src="https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge" alt="Matplotlib"/></a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/actions/workflows/tests.yml"><img src="https://img.shields.io/github/actions/workflow/status/hrosicka/QuadraticEquationSolver/tests.yml?branch=master&style=for-the-badge&logo=github&label=Tests" alt="Tests Status"/></a>
 </p>
 
 <p align="center">
-  [![GitHub Stars](https://img.shields.io/github/stars/hrosicka/QuadraticEquationSolver?style=for-the-badge&logo=github&color=ffee55&logoColor=white)](https://github.com/hrosicka/QuadraticEquationSolver/stargazers)
-  [![Last Commit](https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver?style=for-the-badge&logo=git&color=990000)](https://github.com/hrosicka/QuadraticEquationSolver/commits/master)
-  [![Author: Hanka](https://img.shields.io/badge/Author-Hanka%20%F0%9F%91%A9%E2%80%8D%F0%9F%94%AC-deeppink?style=for-the-badge)](https://github.com/hrosicka)
-  [![GitHub License](https://img.shields.io/github/license/hrosicka/QuadraticEquationSolver?style=for-the-badge&color=yellow)](./LICENSE)
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/stargazers"><img src="https://img.shields.io/github/stars/hrosicka/QuadraticEquationSolver?style=for-the-badge&logo=github&color=ffee55&logoColor=white" alt="GitHub Stars"/></a>
+  <a href="https://github.com/hrosicka/QuadraticEquationSolver/commits/master"><img src="https://img.shields.io/github/last-commit/hrosicka/QuadraticEquationSolver?style=for-the-badge&logo=git&color=990000" alt="Last Commit"/></a>
+  <a href="https://github.com/hrosicka"><img src="https://img.shields.io/badge/Author-Hanka%20%F0%9F%91%A9%E2%80%8D%F0%9F%94%AC-deeppink?style=for-the-badge" alt="Author: Hanka"/></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/github/license/hrosicka/QuadraticEquationSolver?style=for-the-badge&color=yellow" alt="GitHub License"/></a>
 </p>
 
 **Effortlessly solve quadratic equations, visualize their graphs, and gain insights into their roots – all in one place!**
