@@ -1,8 +1,9 @@
 import math
 import cmath
 
+
 class QuadraticEquation:
-    """ 
+    """
     Calculation of quadratic equation including complex roots
     """
 
@@ -22,18 +23,16 @@ class QuadraticEquation:
         self.vertex_x = 0
         self.vertex_y = 0
 
-
     def discriminant(self):
         """
         D = b^2 - 4*a*c
         3 possibilities:
         D < 0 - 2 complex roots
-        D = 0 
+        D = 0
         D > 0 - 2 roots
         """
-        D = pow(self.b,2) - 4*self.a*self.c
+        D = pow(self.b, 2) - 4 * self.a * self.c
         return D
-
 
     def equation_type(self, D):
         """
@@ -47,10 +46,11 @@ class QuadraticEquation:
         elif D < 0:
             return "The roots are complex."
         elif D == 0:
-            return "Equation has 1 root - the two roots are real and equal to each other."
+            return (
+                "Equation has 1 root - the two roots are real and equal to each other."
+            )
         else:
             return "Equation has 2 roots - real and unequal."
-
 
     def solve(self):
         """
@@ -72,7 +72,7 @@ class QuadraticEquation:
 
         if D == 0:
             self.x1 = self.x2 = round(-self.b / (2 * self.a), 3)
-            
+
         elif D > 0:
             self.x1 = round((-self.b + math.sqrt(D)) / (2 * self.a), 3)
             self.x2 = round((-self.b - math.sqrt(D)) / (2 * self.a), 3)
@@ -85,4 +85,6 @@ class QuadraticEquation:
 
         # Vertex calculation for standard cases
         self.vertex_x = -self.b / (2 * self.a)
-        self.vertex_y = self.a * self.vertex_x * self.vertex_x + self.b * self.vertex_x + self.c
+        self.vertex_y = (
+            self.a * self.vertex_x * self.vertex_x + self.b * self.vertex_x + self.c
+        )
