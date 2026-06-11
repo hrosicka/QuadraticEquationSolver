@@ -24,7 +24,8 @@ from PyQt5.QtGui import (
 from PyQt5 import QtCore
 
 import matplotlib
-matplotlib.use('Qt5Agg')
+
+matplotlib.use("Qt5Agg")
 
 
 import numpy as np
@@ -45,11 +46,11 @@ class MainWindow(QMainWindow):
 
         # relative path
         self.dirname = os.path.dirname(__file__)
-        self.graph_ico = os.path.join(self.dirname, 'icons/graph_ico.png')
-        self.stop = os.path.join(self.dirname, 'icons/stop_writing.png')
+        self.graph_ico = os.path.join(self.dirname, "icons/graph_ico.png")
+        self.stop = os.path.join(self.dirname, "icons/stop_writing.png")
 
         # window name and icon
-        self.setWindowTitle('Quadratic Equation')
+        self.setWindowTitle("Quadratic Equation")
         self.setWindowIcon(QIcon(self.graph_ico))
 
         # minimum size of main window
@@ -61,11 +62,11 @@ class MainWindow(QMainWindow):
         self.setMaximumHeight(config.WINDOW_HEIGHT)
 
         # button for solving quation
-        buttonSolve = QPushButton('Solve')
+        buttonSolve = QPushButton("Solve")
         buttonSolve.clicked.connect(lambda: self.solve())
 
         # button for closing window
-        buttonClose = QPushButton('Close')
+        buttonClose = QPushButton("Close")
         buttonClose.clicked.connect(self.close)
 
         # horizontal layout for buttons - stretch method added
@@ -76,7 +77,7 @@ class MainWindow(QMainWindow):
 
         # vertical layout for numerical solution - input and results
         verticalLayoutNumerical = QVBoxLayout()
-        
+
         # calling method for creating layout for input coefficients
         self.layoutCoef()
 
@@ -102,7 +103,7 @@ class MainWindow(QMainWindow):
         verticalLayoutNumerical.addWidget(groupBoxCoef)
         verticalLayoutNumerical.addWidget(groupBoxEquation)
         verticalLayoutNumerical.addWidget(groupBoxSolution, 1)
- 
+
         # horizontal layout for numetical values on the left side and graph on the right side
         mainHorizontalLayout = QHBoxLayout()
         mainHorizontalLayout.addLayout(verticalLayoutNumerical)
@@ -113,54 +114,51 @@ class MainWindow(QMainWindow):
         outerVerticalLayout.addLayout(mainHorizontalLayout)
         outerVerticalLayout.addStretch(1)
         outerVerticalLayout.addLayout(horizontalLayoutButtons)
-        
+
         w = QWidget()
         w.setLayout(outerVerticalLayout)
         self.setCentralWidget(w)
 
-
     def layoutCoef(self):
-        
+
         validator = QIntValidator(config.VALIDATOR_MIN, config.VALIDATOR_MAX, self)
 
         self.layout_coef = QGridLayout()
 
         self.label_description = QLabel("Quadratic equation: ax<sup>2</sup>+bx+c=0")
         self.label_description.setAlignment(QtCore.Qt.AlignLeft)
-        self.layout_coef.addWidget(self.label_description,0,0,1,6)
+        self.layout_coef.addWidget(self.label_description, 0, 0, 1, 6)
 
         self.label_a = QLabel("a:")
         self.label_a.setAlignment(QtCore.Qt.AlignLeft)
-        self.layout_coef.addWidget(self.label_a,1,0)
+        self.layout_coef.addWidget(self.label_a, 1, 0)
 
         self.edit_a = QLineEdit(self)
         self.edit_a.setAlignment(QtCore.Qt.AlignRight)
         self.edit_a.setToolTip("Enter coefficent a ≠ 0")
         self.edit_a.setValidator(validator)
-        self.layout_coef.addWidget(self.edit_a,1,1)
-        
+        self.layout_coef.addWidget(self.edit_a, 1, 1)
 
         self.label_b = QLabel("b:")
         self.label_b.setAlignment(QtCore.Qt.AlignLeft)
-        self.layout_coef.addWidget(self.label_b,1,2)
+        self.layout_coef.addWidget(self.label_b, 1, 2)
 
         self.edit_b = QLineEdit(self)
         self.edit_b.setAlignment(QtCore.Qt.AlignRight)
         self.edit_b.setToolTip("Enter coefficent b")
         self.edit_b.setValidator(validator)
-        self.layout_coef.addWidget(self.edit_b,1,3)
+        self.layout_coef.addWidget(self.edit_b, 1, 3)
 
         self.label_c = QLabel("c:")
         self.label_c.setAlignment(QtCore.Qt.AlignLeft)
-        self.layout_coef.addWidget(self.label_c,1,4)
+        self.layout_coef.addWidget(self.label_c, 1, 4)
 
         self.edit_c = QLineEdit(self)
         self.edit_c.setAlignment(QtCore.Qt.AlignRight)
         self.edit_c.setToolTip("Enter coefficent c")
         self.edit_c.setValidator(validator)
-        self.layout_coef.addWidget(self.edit_c,1,5)
+        self.layout_coef.addWidget(self.edit_c, 1, 5)
 
-  
     def layoutEquation(self):
 
         self.layout_equation = QGridLayout()
@@ -168,51 +166,49 @@ class MainWindow(QMainWindow):
         self.label_equation = QLabel("")
         # self.label_equation.setFont(QFont('Sans Serif', 10))
         self.label_equation.setAlignment(QtCore.Qt.AlignCenter)
-        self.layout_equation.addWidget(self.label_equation,0,0,1,6)
-
+        self.layout_equation.addWidget(self.label_equation, 0, 0, 1, 6)
 
     def layoutSolution(self):
 
         self.layout_solution = QGridLayout()
 
-        self.label_three_type_solution = QLabel('Type of solution')
+        self.label_three_type_solution = QLabel("Type of solution")
         self.label_three_type_solution.setAlignment(QtCore.Qt.AlignCenter)
-        self.layout_solution.addWidget(self.label_three_type_solution,0,0,1,6)
+        self.layout_solution.addWidget(self.label_three_type_solution, 0, 0, 1, 6)
 
-        self.label_discriminant = QLabel('Discriminant D:')
-        self.layout_solution.addWidget(self.label_discriminant,1,0)
+        self.label_discriminant = QLabel("Discriminant D:")
+        self.layout_solution.addWidget(self.label_discriminant, 1, 0)
 
-        self.label_discriminant_number = QLabel('')
+        self.label_discriminant_number = QLabel("")
         self.label_discriminant_number.setAlignment(QtCore.Qt.AlignCenter)
-        self.layout_solution.addWidget(self.label_discriminant_number,1,1,1,5)
+        self.layout_solution.addWidget(self.label_discriminant_number, 1, 1, 1, 5)
 
-        self.label_x1_root = QLabel('Root x1:')
-        self.layout_solution.addWidget(self.label_x1_root,2,0)
+        self.label_x1_root = QLabel("Root x1:")
+        self.layout_solution.addWidget(self.label_x1_root, 2, 0)
 
-        self.label_x1_root_number = QLabel('')
+        self.label_x1_root_number = QLabel("")
         self.label_x1_root_number.setAlignment(QtCore.Qt.AlignCenter)
         # self.label_x1_root_number.setFont(QFont('Sans Serif', 10))
-        self.layout_solution.addWidget(self.label_x1_root_number,2,1,1,5)
+        self.layout_solution.addWidget(self.label_x1_root_number, 2, 1, 1, 5)
 
-        self.label_x2_root = QLabel('Root x2:')
-        self.layout_solution.addWidget(self.label_x2_root,3,0)
+        self.label_x2_root = QLabel("Root x2:")
+        self.layout_solution.addWidget(self.label_x2_root, 3, 0)
 
-        self.label_x2_root_number = QLabel('')
+        self.label_x2_root_number = QLabel("")
         self.label_x2_root_number.setAlignment(QtCore.Qt.AlignCenter)
         # self.label_x2_root_number.setFont(QFont('Sans Serif', 10))
-        self.layout_solution.addWidget(self.label_x2_root_number,3,1,1,5)
+        self.layout_solution.addWidget(self.label_x2_root_number, 3, 1, 1, 5)
 
-        self.label_vertex = QLabel('Vertex:')
-        self.layout_solution.addWidget(self.label_vertex,4,0)
+        self.label_vertex = QLabel("Vertex:")
+        self.layout_solution.addWidget(self.label_vertex, 4, 0)
 
-        self.label_vertex_number = QLabel('')
+        self.label_vertex_number = QLabel("")
         self.label_vertex_number.setAlignment(QtCore.Qt.AlignCenter)
-        #self.label_vertex_number.setFont(QFont('Sans Serif', 10))
-        self.layout_solution.addWidget(self.label_vertex_number,4,1,1,5)
-
+        # self.label_vertex_number.setFont(QFont('Sans Serif', 10))
+        self.layout_solution.addWidget(self.label_vertex_number, 4, 1, 1, 5)
 
     def solve(self):
-        
+
         self.display()
 
     def mark_inputs_as_invalid(self):
@@ -231,10 +227,12 @@ class MainWindow(QMainWindow):
 
     def show_error(self, title: str, message: str):
         """Display an error dialog with the specified title and message"""
-        messagebox = QMessageBox(QMessageBox.Information, title, message, buttons=QMessageBox.Ok, parent=self)
+        messagebox = QMessageBox(
+            QMessageBox.Information, title, message, buttons=QMessageBox.Ok, parent=self
+        )
         messagebox.setIconPixmap(QPixmap(self.stop))
         messagebox.exec_()
-        
+
     def display(self):
         coeff_a = self.edit_a.text()
         coeff_b = self.edit_b.text()
@@ -252,20 +250,24 @@ class MainWindow(QMainWindow):
                 res = 1 / a
             except Exception:
                 # Handle the specific case where coefficient 'a' is zero
-                self.edit_a.setStyleSheet(f"background-color : {config.COLOR_INVALID}; color : black") 
+                self.edit_a.setStyleSheet(
+                    f"background-color : {config.COLOR_INVALID}; color : black"
+                )
                 self.show_error("Error", "Coefficient 'a' cannot be zero!")
             else:
                 self.label_equation.setText(self.display_equation_format(a, b, c))
 
                 qe = quadratic_equation.QuadraticEquation(a, b, c)
                 self.discriminant = qe.discriminant()
-                self.label_three_type_solution.setText(qe.equation_type(self.discriminant))
+                self.label_three_type_solution.setText(
+                    qe.equation_type(self.discriminant)
+                )
                 self.label_discriminant_number.setText(str(self.discriminant))
                 qe.solve()
                 self.x1_root = qe.x1
                 self.x2_root = qe.x2
-                
-                if (qe.x1 == qe.x2):
+
+                if qe.x1 == qe.x2:
                     self.label_x1_root.setText("Root x1 = Root x2:")
                     self.label_x2_root.setVisible(False)
                     self.label_x2_root_number.setVisible(False)
@@ -276,31 +278,43 @@ class MainWindow(QMainWindow):
 
                 self.label_x1_root_number.setText(str(self.x1_root))
                 self.label_x2_root_number.setText(str(self.x2_root))
-                self.vertex_x = round(qe.vertex_x,3)
-                self.vertex_y = round(qe.vertex_y,3)
-                self.label_vertex_number.setText('('+str(self.vertex_x)+', '+str(self.vertex_y)+')')
+                self.vertex_x = round(qe.vertex_x, 3)
+                self.vertex_y = round(qe.vertex_y, 3)
+                self.label_vertex_number.setText(
+                    "(" + str(self.vertex_x) + ", " + str(self.vertex_y) + ")"
+                )
 
                 # Plotting the graph using config colors
                 self.sc.axes.cla()
-                x = np.linspace(self.vertex_x-10, self.vertex_x+10, 1000)
-                y = a * x ** 2 + b * x + c
+                x = np.linspace(self.vertex_x - 10, self.vertex_x + 10, 1000)
+                y = a * x**2 + b * x + c
                 self.sc.axes.plot(x, y, linewidth=3, color=config.COLOR_GRAPH_LINE)
                 self.sc.axes.set_facecolor(config.COLOR_VALID)
-                self.sc.axes.plot(self.vertex_x, self.vertex_y, marker="o", markersize=8, markeredgecolor=config.COLOR_GRAPH_LINE, markerfacecolor=config.COLOR_GRAPH_VERTEX)
-                self.sc.axes.set_xlabel('x-axis', fontsize=12)
-                self.sc.axes.set_ylabel('y-axis', fontsize=12)
-                self.description = 'V = [' + str(self.vertex_x) + ', ' + str(self.vertex_y) + ']'
-                self.sc.axes.annotate(self.description, xy =(self.vertex_x, self.vertex_y),
-                                      xytext =(self.vertex_x - 9, self.vertex_y + 1), arrowprops = dict(facecolor =config.COLOR_GRAPH_VERTEX,
-                                                                                                       shrink = 0.05)) 
+                self.sc.axes.plot(
+                    self.vertex_x,
+                    self.vertex_y,
+                    marker="o",
+                    markersize=8,
+                    markeredgecolor=config.COLOR_GRAPH_LINE,
+                    markerfacecolor=config.COLOR_GRAPH_VERTEX,
+                )
+                self.sc.axes.set_xlabel("x-axis", fontsize=12)
+                self.sc.axes.set_ylabel("y-axis", fontsize=12)
+                self.description = (
+                    "V = [" + str(self.vertex_x) + ", " + str(self.vertex_y) + "]"
+                )
+                self.sc.axes.annotate(
+                    self.description,
+                    xy=(self.vertex_x, self.vertex_y),
+                    xytext=(self.vertex_x - 9, self.vertex_y + 1),
+                    arrowprops=dict(facecolor=config.COLOR_GRAPH_VERTEX, shrink=0.05),
+                )
                 self.sc.draw()
 
         except Exception:
             # Inputs are not integers -> mark all as invalid and show error
             self.mark_inputs_as_invalid()
             self.show_error("Error", "Input can only be an integer!")
-
-        
 
     def display_equation_format(self, a, b, c):
         """
@@ -316,7 +330,6 @@ class MainWindow(QMainWindow):
         """
         equation = self.first_term(a) + self.second_term(b) + self.third_term(c) + "=0"
         return equation
-        
 
     def first_term(self, a):
         """
@@ -335,13 +348,12 @@ class MainWindow(QMainWindow):
 
         return a
 
-
     def second_term(self, b):
         """
         Second linear term in quadratic equation
 
         b - coefficient b - int
-        
+
         return string (example 5x )
         """
         if b == 1:
@@ -356,13 +368,13 @@ class MainWindow(QMainWindow):
             b = str(b) + "x"
 
         return b
-    
+
     def third_term(self, c):
         """
         Third constant term in quadratic equation
 
         c - coefficient c - int
-        
+
         return string (example 5)
         """
         if c > 0:
@@ -373,15 +385,16 @@ class MainWindow(QMainWindow):
             c = str(c)
 
         return c
-   
+
+
 app = QApplication(sys.argv)
 w = MainWindow()
 w.show()
 
 
 script_dir = Path(__file__).resolve().parent
-qss_path = script_dir / 'style.qss'
+qss_path = script_dir / "style.qss"
 
-app.setStyleSheet(qss_path.read_text(encoding='utf-8'))
+app.setStyleSheet(qss_path.read_text(encoding="utf-8"))
 
 app.exec()
